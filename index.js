@@ -2,8 +2,23 @@ const express = require('express');
 
 const app = express();
 
-app.get('/', (req, res) =>{
-    res.send("Amare dakar jonno Thanks Bhai");
+const users=["Asad", "Moin", "Mithi"]
+
+app.get('/', (req, res) => {
+    const bands = {
+        name: "Metallica", Genre: "metal"
+    }   
+    res.send(bands)
   })
 
-app.listen(3000,() => console.log('listening to port 3000'))
+app.get('/sports/football',(req,res)=>{
+    res.send({League:"LaLiga", Teams:20})
+})
+
+app.get('/users/:id', (req, res) =>{
+    const id= req.params.id;
+    const name =users[id];
+    res.send({id, name});
+})
+
+app.listen(3000, () => console.log('listening to port 3000'))
